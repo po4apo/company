@@ -1,0 +1,53 @@
+{% extends "employees/base.html" %}
+
+{% block title %}
+    Сотрудник
+{% endblock %}
+
+
+{% block content %}
+    <div class="row">
+    <div class="col-sm-2">
+        <form method="post">{% csrf_token %}
+            {{ form_for_name.as_p }}
+            <input name='search_by_name' type="submit">
+        </form>
+
+        <form method="POST">{% csrf_token %}
+            {{ form_for_id.as_p }}
+            <input name='search_by_id' type="submit">
+        </form>
+    </div>
+
+    <div class="col-sm-10">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Должность</th>
+                <th scope="col">Дата трудоустройства</th>
+                <th scope="col">Отдел</th>
+                <th scope="col"> </th>
+                <th scope="col"> </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in object_list %}
+                <tr>
+                    <th scope="col">{{ obj.id }}</th>
+                    <th scope="col">{{ obj.name }}</th>
+                    <th scope="col">{{ obj.post }}</th>
+                    <th scope="col">{{ obj.date_of_hiring }}</th>
+                    <th scope="col">{{ obj.department }}</th>
+                    <th scope="col"><a href="{% url 'edit' obj.id %}">Изменить</a> </th>
+                    <th scope="col"><a href="{% url 'del' obj.id %}">Удалить</a> </th>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,16 @@
+{% extends "employees/base.html" %}
+
+{% block title %}
+    Изменить данные
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-2">
+            <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Изменить">
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "employees/base.html" %}
+
+{% block title %}
+    Новый сотрудник
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-2">
+            <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Сохранить">
+            </form>
+        </div>
+    </div>
+{% endblock %}
